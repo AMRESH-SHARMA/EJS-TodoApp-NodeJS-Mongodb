@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+
+</head>
+<body style="background-color: #<%= color %>;">
+    <h3>Refresh page!</h3>    <hr><br>
+
+    
+    <h1>Generated Random Number is <%= randomkey %> </h1>
+    <h3>Dynamic message: <%= messagekey %> </h3>    
+    <p>Example of passing variable OR dynamic content using EJS </p>
+    
+    <hr><br>
+
+    <%= color %>
+    
+    <% switch ( randomkey ) { 
+           case 1:   %>
+        <h1 style="color: purple;">PURPLE!  1</h1>
+        <%  break;
+            case 2:   %>
+        <h1 style="color: red;">RED!  2</h1>
+        <%  break;
+            case 3:   %>
+        <h1 style="color: blue;">BLUE!  3</h1>
+        <%  break;
+            case 4:   %>
+        <h1 style="color: rgb(165, 165, 0);">YELLOW!  4</h1>
+        <%  break;
+            case 5:   %>
+        <h1 style="color: green;">GREEN!  5</h1>
+        <%  break;
+            case 6:   %>
+        <h1 style="color: rgb(179, 71, 0);">ORANGE!  6</h1>
+        <%  break;
+    
+            default:
+            break;  
+    }   %>
+
+    <p>Example of Sciplet Tag directly written on <strong>EJS OR HTML</strong> file file for writing control flow logic.</p>
+
+    <hr>
+
+    <h3>bg color is changing due to EJS Variable in Body CSS</h3>
+
+</body>
+</html>

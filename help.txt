@@ -1,0 +1,42 @@
+RUN: npm i init
+To install  package.json dependencies
+
+res.send("end")
+It is end after this no response can be sent. 
+
+FOR MULTIPLE RESPONSE
+res.write("Today is weekend")  
+res.write("relax, Amresh")  
+res.sen()
+It collect different response from res.write() then, finally send them. 
+
+
+
+Why need templates?
+
+
+PROBLEM:
+
+If (today.getDay() == 0) {
+    res.sendFile(__dirname + "sunday.html")
+} 
+else if ((today.getDay() == 1)) {
+    res.sendFile(__dirname + "monday.html")
+}
+else if ((today.getDay() == 2)) {
+    res.sendFile(__dirname + "tuesday.html")
+}
+
+For above task you need to make so many html files.But what if you send single html file and further change embedded data in it.Like in case of creating 3 different html page of welcome, success, failure to show message. we can make single html page and change inner content according to need.
+inject js variables permanently in html page whose value can be change and make it dynamic page.
+
+
+EJS: EMBEDDED JAVASCRIPT Templating module  (npm i ejs)
+
+It replace <%= key %> in html with key:value in app.js
+
+SCRIPLET TAG  <% Control flow like if else, while loop, switch statement %>
+
+Replace  only non html content with Scriplet tag. 
+Advice to avoid writing logic of control  flow scriplet tags in html fie as it is frontend part, embedded your logic in app.js file and pass only variable values.
+
