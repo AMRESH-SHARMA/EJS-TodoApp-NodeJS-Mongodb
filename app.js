@@ -4,11 +4,18 @@ const app = express();
 
 app.set('view engine', 'ejs');                      // set the view engine to ejs
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static("public"));                  //Serve  css file
 
 var items = [];                                     //1] declare empty array named items
 
 app.get('/', (req, res) => {
-    res.render("index", {newlistItems: items});     //5] Renders homepage 
+
+    //Get day, date
+    var today = new Date();
+    var options = { weekday: "long", day: "numeric", month: "long"};
+    var day = today.toLocaleDateString("en-us", options);
+
+    res.render("index", {kindofDay: day, newlistItems: items});     //5] Renders homepage 
 });
 
 app.post('/', (req, res) => {

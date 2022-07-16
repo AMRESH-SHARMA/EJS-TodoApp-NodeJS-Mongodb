@@ -4,25 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do list</title>
+    <title>Todo App</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Unordered list of items </h1>
-    <p>If you want to send array of objects or collection of data to EJS Template.
-        OR want to create to-do app where on tapping add button, input form data get appear on home page or index.ejs file,
-        below is approach.
-    </p>
+    <h1><%= kindofDay %> </h1>
 
     <ul>
-        <h3>Printing whole array got from server</h3>
-        <li><%= newlistItems %></li>
-        <hr>
 
-        <h3>Printing each object of array using for loop insile li tag</h3>
-        <!-- for-loop to iterate newlistItems array and print it line by line insile li tag -->
         <% for (var i = 0; i < newlistItems.length; i++) { %>
            <li><%= newlistItems[i] %></li>
-            
         <% } %>
 
     </ul>
