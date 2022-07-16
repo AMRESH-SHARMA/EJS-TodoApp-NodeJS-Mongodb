@@ -1,24 +1,32 @@
 RUN: npm init to install package.json
 RUN: node app.js
 
-USED:
-EXPRESS
-body-parser: Middleware to capture form data.
-EJS module: To create template
+To store items, in personal list we have items[] array, and for worklist we have workItems[] array.
+We have separate routes for both pages and using EJS we render and just change content on single page.
 
-If you want to send array of objects or collection of data to EJS Template.
-OR want to create to-do app where on tapping add button, input form data get appear on home page or index.ejs file,
-below is approach.
+TWO routes-->>
+
+1]  Personal list routes:
+    app.get('/')
+    app.post('/')
+    let items = [];                   // Declare empty array for personal list to store and append list items in it
 
 
-PROCESS STEP BY STEP:
+2]  Work list routes:
+    app.get("/work")
+    app.post("/work")
+    let workItems = [];                // Declare empty array for work list
 
-1] declare empty array named items.
+In index.html input form make "action" dynamic url.
 
-2] Capture form data.
+How Page Works? :
+1] Firstly it renders page of get url  requested
+2] Then, you can post data to dynamic url in html Page
+3] Capture data POST request data by body parser 
+3] Then, Using EJS variables we append that data to empty array acc to list open like worklist or personal list
+4] Finally, Redirect to get url 
+Again process 1 start runs in cycle.
 
-3] pushing form data to array named items, for every add button click in index.ejs file.
-4] Redirect you to home page.
-
-5] Renders homepage on get request for index.ejs.
-6] Use for-loop using scriplet tag to  iterate array and print item from array.
+________________________________________________________________________________________________________
+PARTIALS AND LAYOUTS IN EJS:
+Divide whole page into header footer and then connect them all.

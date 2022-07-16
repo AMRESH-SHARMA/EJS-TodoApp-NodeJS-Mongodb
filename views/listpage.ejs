@@ -1,0 +1,34 @@
+<!-- PARTIAL IN EJS -->
+<%- include("header") -%>
+
+<body>
+    <% 
+    <!--Get day, date -->
+    var today = new Date();
+    var options = { weekday: "long", day: "numeric", month: "long"};
+    var day = today.toLocaleDateString("en-us", options);
+    %>
+
+    <div class="box" id="heading">
+        <h1><%= listTitle %><hr>
+        <%= day %></h1>
+    </div>
+
+    <div class="box">
+
+        <% for (let i = 0; i < newlistItems.length; i++) { %>
+        <div class="item">
+            <input type="checkbox">
+            <p><%= newlistItems[i] %></p>
+        </div>
+        <% } %>
+        <!-- dynamic url form, action is dynamic -->
+        <form class="item" action="<%= url %>" method="POST">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button type="submit">+</button>
+        </form>
+
+        </div>
+    </body>
+<!-- PARTIAL IN EJS -->
+<%- include("footer") -%>
