@@ -1,4 +1,4 @@
-RUN: npm init to install package.json
+RUN: npm i init ,to install package.json
 RUN: node app.js
 
 USED:
