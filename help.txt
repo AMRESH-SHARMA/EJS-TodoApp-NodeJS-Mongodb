@@ -1,42 +1,24 @@
-RUN: npm i init
-To install  package.json dependencies
+RUN: npm init to install package.json
+RUN: node app.js
 
-res.send("end")
-It is end after this no response can be sent. 
+USED:
+EXPRESS
+body-parser: Middleware to capture form data.
+EJS module: To create template
 
-FOR MULTIPLE RESPONSE
-res.write("Today is weekend")  
-res.write("relax, Amresh")  
-res.sen()
-It collect different response from res.write() then, finally send them. 
-
-
-
-Why need templates?
+If you want to send array of objects or collection of data to EJS Template.
+OR want to create to-do app where on tapping add button, input form data get appear on home page or index.ejs file,
+below is approach.
 
 
-PROBLEM:
+PROCESS STEP BY STEP:
 
-If (today.getDay() == 0) {
-    res.sendFile(__dirname + "sunday.html")
-} 
-else if ((today.getDay() == 1)) {
-    res.sendFile(__dirname + "monday.html")
-}
-else if ((today.getDay() == 2)) {
-    res.sendFile(__dirname + "tuesday.html")
-}
+1] declare empty array named items.
 
-For above task you need to make so many html files.But what if you send single html file and further change embedded data in it.Like in case of creating 3 different html page of welcome, success, failure to show message. we can make single html page and change inner content according to need.
-inject js variables permanently in html page whose value can be change and make it dynamic page.
+2] Capture form data.
 
+3] pushing form data to array named items, for every add button click in index.ejs file.
+4] Redirect you to home page.
 
-EJS: EMBEDDED JAVASCRIPT Templating module  (npm i ejs)
-
-It replace <%= key %> in html with key:value in app.js
-
-SCRIPLET TAG  <% Control flow like if else, while loop, switch statement %>
-
-Replace  only non html content with Scriplet tag. 
-Advice to avoid writing logic of control  flow scriplet tags in html fie as it is frontend part, embedded your logic in app.js file and pass only variable values.
-
+5] Renders homepage on get request for index.ejs.
+6] Use for-loop using scriplet tag to  iterate array and print item from array.

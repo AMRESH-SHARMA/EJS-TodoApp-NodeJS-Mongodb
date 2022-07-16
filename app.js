@@ -1,25 +1,23 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
 const app = express();
-app.set('view engine', 'ejs');                  // set the view engine to ejs
 
+app.set('view engine', 'ejs');                      // set the view engine to ejs
 app.use(bodyParser.urlencoded({extended: true}));
 
+var items = [];                                     //1] declare empty array named items
 
 app.get('/', (req, res) => {
-
-    var randomNumber = Math.floor(Math.random()*6+1);                 //Random number 1-6
-
-    if (randomNumber <= 3 ) {                  
-        msg = "<<<Less than 3"
-    } else if (randomNumber > 3 ) {
-        msg = ">>>Greater than 3"
-    }
-    const randomColor = Math.floor(Math.random()*16777215).toString(16);
-    res.render("index", {randomkey: randomNumber, messagekey: msg, color: randomColor});            //index.ejs file must be inside views folder
-                     
+    res.render("index", {newlistItems: items});     //5] Renders homepage 
 });
+
+app.post('/', (req, res) => {
+    var item = req.body.newItem;                //2] Capture form data
+    items.push(item);                           //3] pushing form data to items array for every add button click in index.ejs file
+    res.redirect('/');                          //4] Redirect you to home page.
+});
+
+
 
 
 

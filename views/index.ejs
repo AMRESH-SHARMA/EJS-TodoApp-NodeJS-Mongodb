@@ -5,49 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To do list</title>
-
 </head>
-<body style="background-color: #<%= color %>;">
-    <h3>Refresh page!</h3>    <hr><br>
+<body>
+    <h1>Unordered list of items </h1>
+    <p>If you want to send array of objects or collection of data to EJS Template.
+        OR want to create to-do app where on tapping add button, input form data get appear on home page or index.ejs file,
+        below is approach.
+    </p>
 
-    
-    <h1>Generated Random Number is <%= randomkey %> </h1>
-    <h3>Dynamic message: <%= messagekey %> </h3>    
-    <p>Example of passing variable OR dynamic content using EJS </p>
-    
-    <hr><br>
+    <ul>
+        <h3>Printing whole array got from server</h3>
+        <li><%= newlistItems %></li>
+        <hr>
 
-    <%= color %>
-    
-    <% switch ( randomkey ) { 
-           case 1:   %>
-        <h1 style="color: purple;">PURPLE!  1</h1>
-        <%  break;
-            case 2:   %>
-        <h1 style="color: red;">RED!  2</h1>
-        <%  break;
-            case 3:   %>
-        <h1 style="color: blue;">BLUE!  3</h1>
-        <%  break;
-            case 4:   %>
-        <h1 style="color: rgb(165, 165, 0);">YELLOW!  4</h1>
-        <%  break;
-            case 5:   %>
-        <h1 style="color: green;">GREEN!  5</h1>
-        <%  break;
-            case 6:   %>
-        <h1 style="color: rgb(179, 71, 0);">ORANGE!  6</h1>
-        <%  break;
-    
-            default:
-            break;  
-    }   %>
+        <h3>Printing each object of array using for loop insile li tag</h3>
+        <!-- for-loop to iterate newlistItems array and print it line by line insile li tag -->
+        <% for (var i = 0; i < newlistItems.length; i++) { %>
+           <li><%= newlistItems[i] %></li>
+            
+        <% } %>
 
-    <p>Example of Sciplet Tag directly written on <strong>EJS OR HTML</strong> file file for writing control flow logic.</p>
-
-    <hr>
-
-    <h3>bg color is changing due to EJS Variable in Body CSS</h3>
+    </ul>
+    <form action="/" method="POST">
+        <input type="text" name="newItem">
+        <button type="submit">ADD</button>
+    </form>
 
 </body>
 </html>
