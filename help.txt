@@ -1,32 +1,65 @@
-RUN: npm init to install package.json
+RUN: npm i ,to install package.json
 RUN: node app.js
 
-To store items, in personal list we have items[] array, and for worklist we have workItems[] array.
-We have separate routes for both pages and using EJS we render and just change content on single page.
+We have separate routes for both default list and custom dyanamic list.
+Using EJS we render and just change content on single page.
 
 TWO routes-->>
 
-1]  Personal list routes:
+1]  PERSONAL LIST ROUTES:
     app.get('/')
     app.post('/')
-    let items = [];                   // Declare empty array for personal list to store and append list items in it
 
 
-2]  Work list routes:
-    app.get("/work")
-    app.post("/work")
-    let workItems = [];                // Declare empty array for work list
+2]  CUSTOM LIST ROUTES: USER CAN CREATE IT'S OWN LIST
+    app.get("/:customListName")
+    app.post("/:customListName")
 
-In index.html input form make "action" dynamic url.
+In index.html, inside input form make "action" dynamic url.
+________________________________________________________________________________________________________
+DB ?
 
-How Page Works? :
-1] Firstly it renders page of get url  requested
-2] Then, you can post data to dynamic url in html Page
-3] Capture data POST request data by body parser 
-3] Then, Using EJS variables we append that data to empty array acc to list open like worklist or personal list
-4] Finally, Redirect to get url 
-Again process 1 start runs in cycle.
+SCHEMA-->MODEL-->QUERY
+________________________________________________________________________________________________________
+
+How Page Works ?
+
+DEFAULT ITEM ADD FUNCTIONING: If list found empty in db it automatically insert an array of 3 defaultItems.
+
+1] Firstly, get url hit, to open home page.
+2] Checks if personal list found empty then, it insert defaultItems array in mongo db then, reload same page by redirect method. (line47)
+3] Then, else block find personal list is not empty, execute to render same page.
+
+ADD ITEM FUNCTIONING
+
+1] On adding item by user using input text form, Capture data of POST request by body parser.
+2] Insert capture data to mongo db and hit homepage url to render or reload.
+
+DELETE ITEM FUNCTIONING
+
+1] Add form for checkbox route it to action=/delete, we do not add form button to submit instead use js to submit
+2] Add js on checkbox form to submit like, onchange form.submit() in homepage
+3] On hitting checkbox, form will post item id, we capture it using body-parser(line-67)app.js
+
+1] to delete item from customlist you need to get name of taht list or listTitle then by id using $pull method delete that item.
+
+CUSTOM LIST FUNCTIONING: TO CREATE LIST BY YOUR OWN, NOT JUST PERSONAL LIST BUT CAN CREATE MORE.
+1] Using ustom url, extract name of list then query in mongo db if list of that name exist, then render else create in mongo db.
+2] In post request,push that item to item array.
 
 ________________________________________________________________________________________________________
 PARTIALS AND LAYOUTS IN EJS:
 Divide whole page into header footer and then connect them all.
+________________________________________________________________________________________________________
+1] Declare mongoose
+2] mongoose.connect()
+3] declare schema for db
+4] declare model, To use various  CRUD method of model
+________________________________________________________________________________________________________
+1] Replace For loop in listpage.ejs to ForEach loop
+2] by default list contains 3 items in it,if founditem array found empty on get request then it will insert 3 default items and redirect function again hit get request, else block render founditem array on home page. 
+
+________________________________________________________________________________________________________
+LODASH
+
+1] To capitalize custom url.

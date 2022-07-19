@@ -8,24 +8,31 @@
     var options = { weekday: "long", day: "numeric", month: "long"};
     var day = today.toLocaleDateString("en-us", options);
     %>
-
+    
     <div class="box" id="heading">
         <h1><%= listTitle %><hr>
         <%= day %></h1>
     </div>
 
     <div class="box">
+        
+        <form action="/delete" method="POST">
+        <!--FOREACH LOOP instead of FOR LOOP-->
+       <% newlistItems.forEach((item) => { %>
+            <div class="item">
+                <!--this form's checkbox sends value = item id-->
+                <input type="checkbox" name="checkbox" value="<%=item._id%>" onchange="this.form.submit()">
+                <!--Iterating array of item's name only-->
+                <p><%= item.name %></p>
+            </div>
+       <% }) %>
+       <input type="hidden" name="listName" value="<%= listTitle %>">
+       </form>
 
-        <% for (let i = 0; i < newlistItems.length; i++) { %>
-        <div class="item">
-            <input type="checkbox">
-            <p><%= newlistItems[i] %></p>
-        </div>
-        <% } %>
         <!-- dynamic url form, action is dynamic -->
         <form class="item" action="<%= url %>" method="POST">
         <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-        <button type="submit">+</button>
+        <button type="submit" name ="list" >+</button>
         </form>
 
         </div>
